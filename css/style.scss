@@ -1,0 +1,896 @@
+@charset "utf-8";
+
+html {
+  scroll-behavior: smooth;
+}
+
+//wrapper
+.wrapper {
+  overflow: hidden;
+}
+
+// mixin
+@mixin media_sp($width-media: 768px) {
+  @media(max-width: $width-media) {
+    @content;
+  }
+}
+@mixin media_pc($width-media: 768px) {
+  @media(min-width: $width-media) {
+    @content;
+  }
+}
+@mixin bg_image($repeat: no-repeat,$size: 50% 50%,$position: 50% 50%) {
+  background-repeat: $repeat;
+  background-size: $size;
+  background-position: $position;
+}
+@mixin app_store($margin: 250px,$padding: 0px,$width: 35%) {
+  margin-top: $margin;
+  padding-top: $padding;
+  img {
+    width: $width;
+  }
+}
+@mixin meatImage($top: 3%,$left: 60%,$width: 340px,$height: 340px) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  text-align: center;
+  transition: 0.1s;
+  &:before {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    display: block;
+    font-family: "Font Awesome 5 Free";
+    content: "\f0a6";
+    color: $meatPink;
+    background-color: rgba(white,0.7);
+    border-radius: 50%;
+    z-index: 30;
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    @keyframes pulse {
+      100% {
+        transform: scale(2.2);
+        opacity: 0;
+      }
+    }
+    @include media_pc {
+      width: 100px;
+      height: 100px;
+      font-size: 60px;
+    }
+    @include media_sp {
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+    }
+  }
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+@mixin not_meatImage($top: 3%,$left: 60%,$width: 340px,$height: 340px) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  text-align: center;
+}
+@mixin step_number($top: 0%,$left: 50%) {
+  background-color: $meatPink;
+  border-radius: 50%;
+  position:absolute;
+  top: $top;
+  left: $left;
+  @include media_pc {
+    width: 80px;
+    height: 80px;
+  }
+  @include media_sp {
+    width: 60px;
+    height: 60px;
+  }
+}
+@mixin step_icon($top: 50%,$left: 80%) {
+  background-color: $meatPink;
+  border-radius: 50%;
+  position:absolute;
+  top: $top;
+  left: $left;
+  @include media_pc {
+    width: 120px;
+    height: 120px;
+  }
+  @include media_sp {
+    width: 100px;
+    height: 100px;
+  }
+}
+@mixin step_explain($top: 50%,$left: 80%) {
+  position: relative;
+  span {
+    border-bottom: solid 1px $meatPink;
+  }
+  @include media_pc {
+    top: $top;
+    left: $left;
+  }
+  @include media_sp {
+    top: $top;
+    left: $left;
+    font-size: 13px;
+  }
+}
+@mixin step_box($top: 0%,$left: 50%) {
+  background-color: white;
+  border-radius: 50%;
+  position:relative;
+  top: $top;
+  left: $left;
+  @include media_pc {
+    width: 360px;
+    height: 360px;
+    padding-top: 40px;
+  }
+  @include media_sp {
+    width: 250px;
+    height: 250px;
+    padding-top: 10px;
+  }
+}
+@mixin center {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+@mixin meat_data($top: 0px,$left: 0px) {
+  background-color: white;
+  border-radius: 20px;
+  position: absolute;
+  top: $top;
+  left: $left;
+  z-index: 40;
+  @include media_pc {
+    width: 420px;
+    height: 270px;
+  }
+  @include media_sp {
+    width: 75%;
+    height: 200px;
+  }
+}
+
+// color
+$meatPink: #ff4867;
+$gray: #e5e5e5;
+$fontBlack: #333333;
+$aboutBlack: #8b8b8b;
+
+// font-size
+@include media_pc {
+  .txts {
+    font-size: 15px;
+  }
+  .txtm {
+    font-size: 23px;
+  }
+  .txtl {
+    font-size: 25px;
+  }
+  .txtxl {
+    font-size: 40px;
+  }
+  .txtxxl {
+    font-size: 55px;
+  }
+  .txtxxxl {
+    font-size: 60px;
+  }
+  .txtMega {
+    font-size: 100px;
+  }
+}
+@include media_sp {
+  .txts {
+    font-size: 8px;
+  }
+  .txtm {
+    font-size: 13px;
+  }
+  .txtl {
+    font-size: 18px;
+  }
+  .txtxl {
+    font-size: 23px;
+  }
+  .txtxxl {
+    font-size: 29px;
+  }
+  .txtxxxl {
+    font-size: 33px;
+  }
+  .txtMega {
+    font-size: 80px;
+  }
+}
+
+//hidden
+.hidden {
+  overflow: hidden;
+}
+
+//menubtn
+.menubtn {
+  background-color: $meatPink;
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  @include media_pc {
+    top: 40px;
+    width: 70px;
+    height: 70px;
+    i {
+      font-size: 40px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+  @include media_sp {
+    top: 0px;
+    width: 40px;
+    height: 45px;
+    i {
+      font-size: 20px;
+    }
+    p {
+      font-size: 10px;
+      line-height: 10px;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//menu
+.menu {
+  background-color: rgba($meatPink,0.7);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  margin-left: -100%;
+  z-index: 100;
+}
+.close_btn {
+  position: relative;
+  top: 5%;
+  left: 90%;
+  width: 80px;
+  height: 80px;
+  @include media_sp {
+    width: 40px;
+    height: 40px;
+  }
+  img {
+    width: 100%;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.menu_title {
+  @include media_pc {
+    padding-top: 30px;
+  }
+  @include media_sp {
+    padding-top: 50px;
+  }
+}
+.menu_box {
+  list-style: none;
+  @include media_pc {
+    padding-top: 40px;
+  }
+  @include media_sp {
+    padding-top: 40px;
+  }
+}
+.menu_item {
+  @include media_pc {
+    padding: 20px 0;
+    &:last-child {
+      padding-bottom: 60px;
+    }
+  }
+  @include media_sp {
+    padding: 10px 0;
+  }
+}
+.app-store_menu {
+  @include app_store(0px,40px,35%);
+}
+
+//job_hunting_way
+.job_hunting_way {
+  @include media_pc {
+    height: 990px;
+  }
+  @include media_sp {
+    text-align: center;
+    height: 580px;
+    }
+}
+.slide {
+  background-color: $meatPink;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  @include media_pc {
+    @include bg_image(no-repeat,90% 90%,120% 150%);
+    height: 990px;
+  }
+  @include media_sp {
+    @include bg_image(no-repeat,100% 50%,50% 60%);
+    height: 580px;
+  }
+}
+.logo {
+  @include media_pc {
+    width: 220px;
+    height: 80px;
+    padding: 30px 0;
+    margin-bottom: 15px;
+  }
+  @include media_sp {
+    width: 100px;
+    margin: 0 auto;
+  }
+}
+.chach_title {
+  @include media_pc {
+    padding: 100px 0 50px 0;
+  }
+  @include media_sp {
+    padding-top: 30px;
+  }
+}
+.chach_phrases {
+  @include media_pc {
+    padding-bottom: 40px;
+    letter-spacing: 4px;
+  }
+  @include media_sp {
+    padding-top: 10px;
+  }
+}
+.app-store {
+  @include app_store();
+}
+.job_hunting_btn {
+  @include media_pc {
+    width: 320px;
+    height: 60px;
+    color: $meatPink;
+    a {
+      height: inherit;
+      line-height: 60px;
+      padding: 0 10px 5px 10px;
+      background-color: white;
+      &:hover {
+        border: solid 5px black;
+        cursor: pointer;
+      }
+    }
+  }
+  @include media_sp {
+    a {
+      color: white!important;
+    }
+  }
+}
+.sns_box > * {
+  vertical-align: bottom;
+}
+
+//about
+.img-meat {
+    width: 100%;
+}
+.img-sub {
+    width: 70%;
+}
+#about {
+  background-color: $gray;
+  position: relative;
+  padding-bottom: 150px;
+  @include media_sp {
+    padding: 160px 50px;
+  }
+}
+.about_title {
+  color: $meatPink;
+  @include media_pc {
+    padding: 190px 0;
+  }
+  @include media_sp {
+    padding-bottom: 60px;
+    font-size: 17px;
+  }
+}
+.katarosu {
+  @include media_pc {
+    @include meatImage(3%,60%,340px,340px);
+  }
+  @include media_sp {
+    @include meatImage(5%,63%,140px,140px);
+  }
+}
+.about_phrases {
+  color: $fontBlack;
+  @include media_pc {
+    padding: 90px 0;
+  }
+  @include media_sp {
+    padding-bottom: 60px;
+  }
+}
+.about_explain {
+  color: $aboutBlack;
+  @include media_pc {
+    line-height: 35px;
+    padding-bottom: 400px;
+  }
+  @include media_sp {
+    line-height: 20px;
+    padding-bottom: 300px;
+  }
+}
+.hire-hukan {
+  @include media_pc {
+    @include meatImage(55+5-6%,5%,280px,280px);
+  }
+  @include media_sp {
+    @include meatImage(40-2%,5%,140px,140px);
+  }
+}
+.ichibo {
+  @include media_pc {
+    @include meatImage(50+3-6%,70%,280px,280px);
+  }
+  @include media_sp {
+    @include meatImage(35-2%,55%,140px,140px)
+  }
+}
+.tare {
+  @include media_pc {
+    @include not_meatImage(50+8-6%,28%,250-30px,250-30px);
+  }
+  @include media_sp {
+    @include not_meatImage(30%,-3%,80px,80px)
+  }
+}
+.hashi {
+  @include media_pc {
+    @include not_meatImage(60+10-6%,33%,500px,500px);
+  }
+  @include media_sp {
+    @include not_meatImage(47-2%,23%,230px,230px);
+    margin-bottom: 20px;
+  }
+}
+.lemon {
+  @include media_pc {
+    @include not_meatImage(50+5-6%,52%,200-30px,200-30px);
+  }
+  @include media_sp {
+    @include not_meatImage(3%,28%,80px,80px)
+  }
+}
+.sanchu {
+  @include media_pc {
+    @include not_meatImage(22%,75%,300px,300px);
+  }
+  @include media_sp {
+    @include not_meatImage(23%,78%,150px,150px);
+  }
+}
+.shoes {
+  @include media_pc {
+    @include not_meatImage(15%,15%,300px,300px);
+  }
+  @include media_sp {
+    @include not_meatImage(20%,-25%,150px,150px)
+    transform: rotate(90deg);
+  }
+}
+.result_box {
+  padding: 0 30px;
+}
+.result_img_box {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height: 160px;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+.result_title {
+  background-color: $meatPink;
+  padding: 30px 0;
+  positin: relative;
+  &::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 0px;
+    top: 84px;
+    left: 50%;
+    margin-left: -15px;
+    border-top: solid 18px $meatPink;
+    border-right: solid 15px transparent;
+    border-left: solid 15px transparent;
+    @include media_sp {
+      top: 75px;
+    }
+  }
+}
+.meat_data_katarosu {
+  @include media_pc {
+    @include meat_data(3%,60%);
+  }
+  @include media_sp {
+    @include meat_data(3%,12.5%);
+  }
+}
+.meat_data_hire {
+  @include media_pc {
+    @include meat_data(55%,5%);
+  }
+  @include media_sp {
+    @include meat_data(35%,12.5%);
+  }
+}
+.meat_data_ichibo {
+  @include media_pc {
+    @include meat_data(53%,70%);
+  }
+  @include media_sp {
+    @include meat_data(33%,12.5%);
+  }
+}
+.data_close_btn {
+  &:hover {
+    cursor: pointer;
+  }
+  @include media_pc {
+    width: 30px;
+    height: 30px;
+  }
+  @include media_sp {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+.data-title {
+  color: $meatPink;
+}
+.data_explain {
+  color: $aboutBlack;
+}
+
+//meet
+#meet {
+  background-color: $meatPink;
+  position: relative;
+  @include media_pc {
+    padding: 85px 0 0px 0;
+    height: 390px;
+  }
+  @include media_sp {
+    padding: 85px 0 0px 0;
+    height: 320px;
+  }
+}
+.meet_phrases {
+  @include media_sp {
+    font-weight: bold;
+  }
+}
+.twitter_cow {
+  @include media_pc {
+    @include not_meatImage(-40%,25%,180px,180px);
+  }
+  @include media_sp {
+    @include not_meatImage(-25%,10%,100px,100px);
+  }
+}
+.fb_cow {
+  @include media_pc {
+    @include not_meatImage(-40%,60%,180px,180px);
+  }
+  @include media_sp {
+    @include not_meatImage(-25%,65%,100px,100px);
+  }
+}
+.goal {
+  @include media_pc {
+    @include not_meatImage(-48%,38%,300px,300px);
+  }
+  @include media_sp {
+    @include not_meatImage(-28%,33%,150px,150px);
+  }
+}
+.app-store2 {
+  @include app_store(0px,20px);
+}
+
+//meet_way
+#meet_way {
+  background-color: $gray;
+  position: relative;
+  @include media_pc {
+    height: 2545px;
+    padding: 100px 0;
+    background-image: url("../img/step-road.png");
+    @include bg_image(no-repeat,50% 20%,50% 30%);
+  }
+  @include media_sp {
+    height: 1714px+667px-200px;
+    padding: 40px 0 0 0;
+    background-image: url("../img/step-road-sp.png");
+    @include bg_image(no-repeat,40% 68%,57% 30%);
+  }
+}
+.step_title {
+  color: $meatPink;
+}
+.step_phrases {
+  color: $fontBlack;
+  @include media_pc {
+    padding-top: 120px;
+  }
+  @include media_sp {
+    padding-top: 60px;
+  }
+}
+.step_number_1 {
+  @include media_pc {
+    @include step_number(2%,80%);
+  }
+  @include media_sp {
+    @include step_number(2%,0%);
+  }
+}
+.step_number_2 {
+  @include media_pc {
+    @include step_number(2%,80%);
+  }
+  @include media_sp {
+    @include step_number(2%,0%);
+  }
+}
+.step_number_3 {
+  @include media_pc {
+    @include step_number(0%,0%);
+  }
+  @include media_sp {
+    @include step_number(2%,0%);
+  }
+}
+.step_icon_1 {
+  @include media_pc {
+    @include step_icon(60%,80%);
+  }
+  @include media_sp {
+    @include step_icon(85%,5%);
+  }
+}
+.step_icon_2 {
+  @include media_pc {
+    @include step_icon(33%,-13%);
+  }
+  @include media_sp {
+    @include step_icon(100%,65%);
+  }
+}
+.step_icon_3 {
+  @include media_pc {
+    @include step_icon(50%,85%);
+  }
+  @include media_sp {
+    @include step_icon(150%,70%);
+  }
+}
+.step_explain_1 {
+  @include media_pc {
+    @include step_explain(5%,80%);
+  }
+  @include media_sp {
+    @include step_explain(30%,45%);
+  }
+}
+.step_explain_2 {
+  @include media_pc {
+    @include step_explain(-60%,-115%);
+  }
+  @include media_sp {
+    @include step_explain(12%,-40%);
+  }
+}
+.step_explain_3 {
+  @include media_pc {
+    @include step_explain(-30%,85%);
+    text-align: left;
+  }
+  @include media_sp {
+    @include step_explain(50%,-35%);
+    text-align: right;
+  }
+}
+.step_box_1 {
+  @include media_pc {
+    @include step_box(50px,22%);
+  }
+  @include media_sp {
+    @include step_box(40px);
+    @include center;
+  }
+}
+.step_box_2 {
+  @include media_pc {
+    @include step_box(100px,60%);
+  }
+  @include media_sp {
+    @include step_box(300px);
+    @include center;
+  }
+}
+.step_box_3 {
+  @include media_pc {
+    @include step_box(-50px,5%);
+  }
+  @include media_sp {
+    @include step_box(600px);
+    @include center;
+  }
+}
+.karubi {
+  @include media_pc {
+    @include meatImage(10%,68%,340px,340px);
+  }
+  @include media_sp {
+    @include meatImage(23+2%,55%,150px,150px);
+  }
+}
+.meat_data_karubi {
+  @include media_pc {
+    @include meat_data(10%,60%);
+  }
+  @include media_sp {
+    @include meat_data(20%,12.5%);
+  }
+}
+.misuji {
+  @include media_pc {
+    @include meatImage(25%,2%,340px,340px);
+  }
+  @include media_sp {
+    @include meatImage(45+4%,15%,150px,150px);
+  }
+}
+.meat_data_misuji {
+  @include media_pc {
+    @include meat_data(25%,2%);
+  }
+  @include media_sp {
+    @include meat_data(45%,12.5%);
+  }
+}
+.tan {
+  @include media_pc {
+    @include meatImage(48%,50%,550px,550px);
+  }
+  @include media_sp {
+    @include meatImage(64+6%,15%,150px,150px);
+  }
+}
+.meat_data_tan {
+  @include media_pc {
+    @include meat_data(48%,50%);
+  }
+  @include media_sp {
+    @include meat_data(65%,12.5%);
+  }
+}
+.hire-side {
+  @include media_pc {
+    @include meatImage(65%,51%,880px,880px);
+  }
+  @include media_sp {
+    @include meatImage(75+8%,51%,320px,320px);
+  }
+}
+.meat_data_hire_side {
+  @include media_pc {
+    @include meat_data(65%,51%);
+  }
+  @include media_sp {
+    @include meat_data(80%,12.5%);
+  }
+}
+.rib {
+  @include media_pc {
+    @include meatImage(65%,-13%,880px,880px);
+  }
+  @include media_sp {
+    @include meatImage(80+8%,-13%,320px,320px);
+  }
+}
+.meat_data_rib {
+  @include media_pc {
+    @include meat_data(65%,2%);
+  }
+  @include media_sp {
+    @include meat_data(85%,12.5%);
+  }
+}
+
+//job_hunting_way_end
+.job_hunting_way_end {
+  background-color: $meatPink;
+  background-image: url("../img/last-road.png");
+  @include media_pc {
+    padding-bottom: 35px;
+    @include bg_image(no-repeat,40% 40%,80% 25%);
+  }
+  @include media_sp {
+    padding-bottom: 30px;
+    @include bg_image(no-repeat,100% 40%,50% 45%);
+  }
+}
+.end_title {
+  @include media_pc {
+    padding: 190px 0 120px 0;
+  }
+  @include media_sp {
+    padding-top: 90px;
+    text-align: center;
+    line-height: 25px
+  }
+}
+.app-store_pc {
+  @include media_pc {
+    @include app_store(0px,45px,20%);
+  }
+  @include media_sp {
+    @include app_store(0px,240px,35%);
+    padding-bottom: 20px;
+  }
+}
+
+//footer
+.footer_logo {
+  @include media_pc {
+    width: 10%;
+  }
+  @include media_sp {
+    width: 20%;
+  }
+}
